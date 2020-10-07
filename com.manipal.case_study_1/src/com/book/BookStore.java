@@ -1,6 +1,7 @@
 package com.book;
 
 import java.util.*;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +21,7 @@ public class BookStore {
 
 		for (Book b : store) {
 			if (b != null) {
-				if (b.getTitle() == title) {
+				if (b.getTitle().equals(title)) {
 
 					displayBook(b.getBookId());
 
@@ -38,7 +39,7 @@ public class BookStore {
 		for (Book b : store) {
 			if (b != null) {
 
-				if (b.getAuthor() == author) {
+				if (b.getAuthor().equals(author)) {
 
 					displayBook(b.getBookId());
 
@@ -53,11 +54,13 @@ public class BookStore {
 	}
 
 	public void displayAll() {
-
+		int c = 1;
 		for (Book b : store) {
 			if (b != null) {
-
+				System.out.println("------------------------------------------------" + "Book" + c
+						+ "------------------------------------------");
 				displayBook(b.getBookId());
+				c++;
 
 			}
 
@@ -71,7 +74,7 @@ public class BookStore {
 			if (b != null) {
 				if (b.getBookId() == null) {
 					continue;
-				} else if (b.getBookId() == BookId) {
+				} else if (b.getBookId().equals(BookId)) {
 					System.out.println("BookId : " + b.getBookId());
 					System.out.println("Title : " + b.getTitle());
 					System.out.println("Author : " + b.getAuthor());
@@ -94,10 +97,10 @@ public class BookStore {
 
 		System.out.println("Enter new Title : ");
 		Scanner sc = new Scanner(System.in);
-		String t = sc.next();
+		String t = sc.nextLine();
 		System.out.println("Enter new Author : ");
 		Scanner sc1 = new Scanner(System.in);
-		String aut = sc1.next();
+		String aut = sc1.nextLine();
 		System.out.println("Enter new Price : ");
 		Scanner sc2 = new Scanner(System.in);
 		float pr = sc2.nextFloat();
@@ -105,34 +108,26 @@ public class BookStore {
 		Scanner sc3 = new Scanner(System.in);
 		String cat = sc3.next();
 
+		Book b1 = new Book(bookId, t, aut, cat, pr);
+
+		boolean flag = false;
+
 		for (Book b : store) {
 
 			if (b != null) {
-				if (b.getBookId() == bookId) {
+				if (b.getBookId().equals(bookId)) {
+					flag = true;
+
 					b.setAuthor(aut);
-					b.setBookId(bookId);
-					b.setTitle(t);
 					b.setCategory(cat);
 					b.setPrice(pr);
+					b.setTitle(t);
+
 				}
 
 			}
 
 		}
-		/*
-		 * Book updated_book = new Book(bookId, t, aut, cat, pr);
-		 * 
-		 * int count = 0;
-		 * 
-		 * for (Book b : store) {
-		 * 
-		 * if (b != null) { if (b.getBookId() == bookId) { store[count] = updated_book;
-		 * }
-		 * 
-		 * } count++;
-		 * 
-		 * }
-		 */
 
 	}
 

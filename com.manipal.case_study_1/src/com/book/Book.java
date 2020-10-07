@@ -42,7 +42,15 @@ public class Book {
 
 	public void setCategory(String category) {
 
-		this.category = category;
+		if (category.equals("Science") || category.equals("Fiction") || category.equals("Technology")
+				|| category.equals("Others")) {
+
+			this.category = category;
+
+		} else {
+			System.out.println("Please enter valid category");
+			return;
+		}
 
 	}
 
@@ -52,28 +60,36 @@ public class Book {
 
 	public void setPrice(float price) {
 
-		this.price = price;
+		if (price < 0) {
+			System.out.println("Please enter valid price");
+			return;
+		} else {
+
+			this.price = price;
+		}
 
 	}
 
 	public Book(String bookId, String title, String author, String category, float price) {
 
-		if (category == "Science" || category == "Fiction" || category == "Technology" || category == "Others") {
+		if (category.equals("Science") || category.equals("Fiction") || category.equals("Technology")
+				|| category.equals("Others")) {
 
 			flag = 1;
 
 		} else {
 			System.out.println("Please enter valid category");
 			flag = 0;
-			System.exit(0);
+			return;
 		}
 
 		if (price < 0) {
 			System.out.println("Please enter valid price");
-			flag = 0;
-			System.exit(0);
+			return;
+
 		} else {
 			flag = 1;
+			;
 
 		}
 
@@ -86,7 +102,7 @@ public class Book {
 		} else {
 			System.out.println("Please enter valid Book Id");
 			flag = 0;
-			System.exit(0);
+			return;
 		}
 
 		if (flag == 1) {

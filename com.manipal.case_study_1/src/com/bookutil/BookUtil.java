@@ -1,5 +1,7 @@
 package com.bookutil;
 
+import java.util.Scanner;
+
 import com.book.*;
 
 public class BookUtil {
@@ -9,38 +11,99 @@ public class BookUtil {
 
 		BookStore bs = new BookStore();
 
-		Book b1 = new Book("B100", "A book", "Charan", "Fiction", 222);
+		boolean flag = true;
+		while (flag) {
+			System.out.println("Select the operation you want to perform");
+			System.out.println("1. Add book to the store");
+			System.out.println("2. Search book by author");
+			System.out.println("3. Search book by title");
+			System.out.println("4. Display all the books in the store");
+			System.out.println("5. Search book by Book Id");
+			System.out.println("6. Update a Book in the store");
+			System.out.println("7. Exit");
 
-		Book b2 = new Book("B101", "A book too", "Someone", "Science", 908);
+			Scanner sc = new Scanner(System.in);
 
-		Book b3 = new Book("B102", "A book as well", "Charan", "Others", 22);
+			int option = sc.nextInt();
 
-		bs.addBook(b1);
-		bs.addBook(b2);
-		bs.addBook(b3);
+			switch (option) {
 
-		System.out.println("-----------");
+			case 1: {
+				System.out.println("Enter the Book Id :");
+				Scanner sc1 = new Scanner(System.in);
+				String bookId = sc1.next();
 
-		bs.searchByAuthor("Charan");
+				System.out.println("Enter the title :");
+				Scanner sc2 = new Scanner(System.in);
+				String title = sc2.nextLine();
 
-		System.out.println("-----------");
+				System.out.println("Enter the author :");
+				Scanner sc3 = new Scanner(System.in);
+				String author = sc3.nextLine();
 
-		bs.searchByTitle("A book");
+				System.out.println("Enter the category :");
+				Scanner sc4 = new Scanner(System.in);
+				String category = sc4.next();
 
-		System.out.println("-----------");
+				System.out.println("Enter the price :");
+				Scanner sc5 = new Scanner(System.in);
+				float price = sc5.nextFloat();
 
-		bs.displayAll();
+				Book b1 = new Book(bookId, title, author, category, price);
 
-		System.out.println("-----------");
+				bs.addBook(b1);
+				break;
+			}
 
-		bs.updateBook("B101");
+			case 2: {
+				System.out.println("Enter author's name :  ");
+				Scanner sc4 = new Scanner(System.in);
+				String author = sc4.nextLine();
+				bs.searchByAuthor(author);
+				break;
+			}
 
-		System.out.println("-----------");
+			case 3: {
+				System.out.println("Enter the book's title : ");
+				Scanner sc2 = new Scanner(System.in);
+				String title = sc2.nextLine();
+				bs.searchByTitle(title);
+				break;
+			}
 
-		bs.displayBook("B101");
+			case 4: {
+				bs.displayAll();
+				break;
+			}
 
-		System.out.println("-----------");
+			case 5: {
+				System.out.println("Enter the Book Id : ");
+				Scanner sc1 = new Scanner(System.in);
+				String bookId = sc1.next();
+				bs.displayBook(bookId);
+				break;
+			}
 
+			case 6: {
+				System.out.println("Enter the Book Id : ");
+				Scanner sc1 = new Scanner(System.in);
+				String bookId = sc1.next();
+				bs.updateBook(bookId);
+				break;
+			}
+
+			case 7: {
+				flag = false;
+				break;
+			}
+
+			default: {
+				System.out.println("Enter valid option");
+			}
+
+			}
+
+		}
 	}
 
 }
