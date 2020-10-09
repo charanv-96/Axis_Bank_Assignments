@@ -14,17 +14,18 @@ class Multiplication {
 
 class Thread4 extends Thread {
 
-	Multiplication t = new Multiplication();
+	private Multiplication m;
 
 	private int number;
 
-	public Thread4(int n) {
+	public Thread4(Multiplication m, int n) {
 		this.number = n;
+		this.m = m;
 	}
 
 	public void run() {
-		synchronized (t) {
-			t.table(number);
+		synchronized (m) {
+			m.table(number);
 
 		}
 
@@ -37,11 +38,12 @@ public class Question4 {
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 
-		Thread4 t4 = new Thread4(5);
-		t4.start();
-		Thread.sleep(1000);
+		Multiplication t = new Multiplication();
 
-		Thread4 t5 = new Thread4(100);
+		Thread4 t4 = new Thread4(t, 5);
+		t4.start();
+
+		Thread4 t5 = new Thread4(t, 100);
 		t5.start();
 
 	}
